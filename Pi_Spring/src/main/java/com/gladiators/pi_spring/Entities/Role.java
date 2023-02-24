@@ -1,15 +1,14 @@
 package com.gladiators.pi_spring.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Role {
     @Id
     @Column(nullable = false, updatable = false)
