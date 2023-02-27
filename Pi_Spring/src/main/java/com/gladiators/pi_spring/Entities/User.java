@@ -44,4 +44,9 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "users")
     @JsonIgnore
     private List<Role> roles ;
+     @JsonIgnore
+    @OneToMany(mappedBy = "User22")
+    private Set<Activity> activityUserActivitys;
+
+
 }
