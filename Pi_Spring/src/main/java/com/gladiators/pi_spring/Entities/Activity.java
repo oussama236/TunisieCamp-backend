@@ -1,16 +1,12 @@
 package com.gladiators.pi_spring.Entities;
-import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -30,11 +26,10 @@ public class Activity implements Serializable {
 
 
 
-    @Size(max = 255)
     @Column
     private String name;
 
-    @Size(max = 255)
+
     @Column(name = "\"description\"")
     private String description;
 
@@ -45,8 +40,7 @@ public class Activity implements Serializable {
     private Boolean disponibility;
 
 
-    @Size(max = 255)
-    @Column
+     @Column
     private String favourite;
 
     @Column

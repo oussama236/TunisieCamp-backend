@@ -1,8 +1,7 @@
 package com.gladiators.pi_spring.Controllers;
 
-import com.gladiators.pi_spring.Entities.Activity;
 import com.gladiators.pi_spring.Entities.Evaluation;
-import com.gladiators.pi_spring.ServiceImp.EvaluationServiceImple;
+import com.gladiators.pi_spring.Services.Implementations.EvaluationServiceImple;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

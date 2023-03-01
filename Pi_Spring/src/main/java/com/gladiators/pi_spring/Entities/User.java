@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -44,9 +45,8 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "users")
     @JsonIgnore
     private List<Role> roles ;
-     @JsonIgnore
+
+    @JsonIgnore
     @OneToMany(mappedBy = "User22")
     private Set<Activity> activityUserActivitys;
-
-
 }

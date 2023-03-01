@@ -3,13 +3,13 @@ package com.gladiators.pi_spring.Controllers;
 import com.gladiators.pi_spring.Entities.Activity;
 import com.gladiators.pi_spring.Entities.Evaluation;
 import com.gladiators.pi_spring.Repositories.ActivityRepository;
-import com.gladiators.pi_spring.ServiceImp.ActivityServiceImple;
+
+import com.gladiators.pi_spring.Services.Implementations.ActivityServiceImple;
 import com.gladiators.pi_spring.export.ExportPdf;
 import com.gladiators.pi_spring.export.QRCode;
 import com.google.zxing.WriterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -20,11 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 
@@ -34,7 +30,7 @@ public class ActivityRestController {
 
 
     @Autowired
-     ActivityServiceImple activityServiceImple;
+    ActivityServiceImple activityServiceImple;
 
 
 
@@ -116,46 +112,6 @@ public  List<Activity> recherche(@PathVariable("keyword") String keyword){
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @GetMapping("/pdf/generate")
-//    public void generatePDF(HttpServletResponse response) throws IOException {
-//        response.setContentType("application/pdf");
-//        DateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd:hh:mm:ss");
-//        String currentDateTime = dateFormatter.format(new Date ());
-//
-//        String headerKey = "Content-Disposition";
-//        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
-//        response.setHeader(headerKey, headerValue);
-//
-//        this.activityServiceImple.export(response);
-//    }
-
-
-
 @Autowired
 ActivityRepository activityRepository;
 
@@ -178,10 +134,55 @@ ActivityRepository activityRepository;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/nb-Activity-Par-Utilisateur/{User}")
     public Integer nbActivityParUtilisateur(@PathVariable("User") Activity activity) {
         return activityServiceImple.nbActivityParUtilisateur (activity);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping("/getActivityByNameAndDesc")
@@ -189,5 +190,29 @@ ActivityRepository activityRepository;
         return activityServiceImple.getActivityByNameAndDesc (name,description);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

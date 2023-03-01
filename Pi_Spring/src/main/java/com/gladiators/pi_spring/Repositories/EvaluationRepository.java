@@ -1,6 +1,5 @@
 package com.gladiators.pi_spring.Repositories;
 
-import com.gladiators.pi_spring.Entities.Activity;
 import com.gladiators.pi_spring.Entities.Evaluation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +10,17 @@ import java.util.List;
 
 @Repository
 public interface EvaluationRepository extends JpaRepository<Evaluation,Long> {
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    @Query("Select e FROM Evaluation e join e.noteValue ")

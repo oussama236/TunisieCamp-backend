@@ -6,12 +6,38 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NamedQuery;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
+
+
+
+    @Query(nativeQuery = true ,value = "SELECT * from Activity s  WHERE s.name like :keyword ")
+    public List<Activity> recherche(@Param("keyword") String keyword);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Récupère toutes les activités dont la date de début est comprise entre deux dates données
    // List<Activity> findActivitiesByStartDateBetween(Date start, Date end);
@@ -38,6 +64,5 @@ public interface ActivityRepository extends JpaRepository<Activity,Long> {
     @Query("select t FROM Activity t where t.name= ?1 and t.description = ?2 ")
     List<Activity> findByNameAndDescription(String name , String description);
 
-    @Query(nativeQuery = true ,value = "SELECT * from Activity s  WHERE s.name like :keyword ")
-    public List<Activity> recherche(@Param("keyword") String keyword);
+
 }
