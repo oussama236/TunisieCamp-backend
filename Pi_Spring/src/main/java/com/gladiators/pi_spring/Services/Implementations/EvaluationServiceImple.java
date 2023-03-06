@@ -1,5 +1,6 @@
 package com.gladiators.pi_spring.Services.Implementations;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gladiators.pi_spring.Entities.Activity;
 import com.gladiators.pi_spring.Entities.Evaluation;
 import com.gladiators.pi_spring.Entities.typeEval;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 @Slf4j
 @Service
@@ -36,9 +38,10 @@ public class EvaluationServiceImple implements IEvaluationService {
     }
 
     @Override
-    public Evaluation updateEvaluation(Evaluation evaluation) {
-        evaluationRepository.save(evaluation);
-        return evaluation;
+    public Evaluation updateEvaluation(Evaluation evaluation , long Activityid) {
+        Evaluation E1 = evaluationRepository.findById (Activityid).orElseThrow (() -> new EntityNotFoundException ("adversting not found"));
+        E1.setNoteValue (evaluation.getNoteValue ());
+        return evaluationRepository.saveAndFlush (E1);
     }
 
     @Override
@@ -73,6 +76,8 @@ return  evaluationRepository.findEvaluationByActivity (ActivityId);
     @Override
     public String mostEvaluation() {
         int x=0;
+
+
                 int y=0;
                 int z=0;
                 for (Evaluation e : evaluationRepository.findAll ()){
@@ -82,18 +87,18 @@ return  evaluationRepository.findEvaluationByActivity (ActivityId);
                   if (e.getNoteValue ().equals (typeEval.Good)){
                       y++;
                   }
-                    if (e.getNoteValue ().equals (typeEval.Moyen)){
+                    if (e.getNoteValue ().equals (typeEval.AVERAGE)){
                         z++;
                     }
                 }
                 if (x>y && x>z){
-                  return "Oups les evaluation noté bad est beaucoup";
+                  return "Oups les evaluation noté est  bad  " +x+ " fois Bad";
                 }
         if (y>x && y>z){
-            return "Félicatation les evaluation noté Good est beaucoup";
+            return "Félicatation les evaluation noté est  Good   "  +y+ " fois good";
         }
         else{
-            return "les evaluation Moyen Good est beaucoup";
+            return "les evaluation noté est  AVERAGE n " +z+ " fois AVERAGE";
         }
 
 

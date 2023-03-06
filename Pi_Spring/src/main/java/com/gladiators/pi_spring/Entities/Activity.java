@@ -72,6 +72,8 @@ public class Activity implements Serializable {
 
     private Set<Suggestion> sugACtiSuggestions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
+    Set<ActivityLiked> activityLikes;
 
 }
 

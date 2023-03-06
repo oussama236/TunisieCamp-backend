@@ -12,7 +12,7 @@ public interface IEvaluationService {
     Long AddEvaluation(Evaluation AC);
     void deleteEvaluationById(Long idA);
 
-    public Evaluation updateEvaluation(Evaluation evaluation);
+    public Evaluation updateEvaluation(Evaluation evaluation , long Activityid);
 
     List<Evaluation> retrieveAllEvaluation();
     public void assignEvaToActivity(Evaluation evaluationId, Long ActivityId);

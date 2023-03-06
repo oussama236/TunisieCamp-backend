@@ -5,6 +5,7 @@ import com.gladiators.pi_spring.Services.Implementations.EvaluationServiceImple;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +41,11 @@ public class EvaluationRestController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/modify-evaluation/{id}")
-    public ResponseEntity<Void> updateEvaluation(@RequestBody Evaluation EvaluationDTO) {
-        evaluationServiceImple.updateEvaluation (EvaluationDTO);
+    @PutMapping("/modify-evaluation/{ActivityId}")
+    public ResponseEntity<Void> updateEvaluation(@RequestBody Evaluation EvaluationDTO ,  @PathVariable("ActivityId") Long ActivityId) {
+        evaluationServiceImple.updateEvaluation (EvaluationDTO,ActivityId);
         return ResponseEntity.ok().build();
+
     }
 
 
@@ -66,8 +68,10 @@ public class EvaluationRestController {
     }
     @GetMapping("/mostEval")
     @ResponseBody
-    public String mostEval(){
-        return evaluationServiceImple.mostEvaluation ();
+    public ResponseEntity<ResponseMessage> mostEval(){
+        String message = "";
+       message = evaluationServiceImple.mostEvaluation ();
+       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     }
 
 }

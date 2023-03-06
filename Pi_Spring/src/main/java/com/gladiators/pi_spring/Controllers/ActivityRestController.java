@@ -1,6 +1,7 @@
 package com.gladiators.pi_spring.Controllers;
 
 import com.gladiators.pi_spring.Entities.Activity;
+import com.gladiators.pi_spring.Entities.ActivityLiked;
 import com.gladiators.pi_spring.Entities.Evaluation;
 import com.gladiators.pi_spring.Repositories.ActivityRepository;
 
@@ -33,15 +34,14 @@ public class ActivityRestController {
     ActivityServiceImple activityServiceImple;
 
 
-
     //temchi
     @ApiOperation(value = "Récupérer la liste des activites")
     @GetMapping("/retrieve-all-Activty")
     public List<Activity> getActivity() throws IOException, WriterException {
         List<Activity> listClasses = activityServiceImple.retrieveAllActivity ();
-        if (listClasses.size() != 0){
-            for (Activity activity : listClasses){
-                QRCode.generateQRCode(activity);
+        if (listClasses.size () != 0) {
+            for (Activity activity : listClasses) {
+                QRCode.generateQRCode (activity);
             }
         }
         return listClasses;
@@ -49,8 +49,8 @@ public class ActivityRestController {
 
     //temchi
     @GetMapping("/{id}")
-    public Activity findById(@PathVariable("id") Long id){
-        return activityServiceImple.findById(id);
+    public Activity findById(@PathVariable("id") Long id) {
+        return activityServiceImple.findById (id);
     }
 
 //temchi
@@ -61,17 +61,15 @@ public class ActivityRestController {
 
     //temchi
     @DeleteMapping("/remove-Activ/{id}")
-    public void deleteActivity(@PathVariable final Long id) {
-
-
-       ;
-          activityServiceImple.deleteActivityById (id);
+    public void deleteActivity(@PathVariable Long id) {
+        activityServiceImple.deleteActivityById (id);
 
     }
-//temchi
+
+    //temchi
     @PutMapping("/modify-Activity/{userId}")
     public void updateActivity(@RequestBody Activity activityDTO, @PathVariable("userId") Long userId) {
-          activityServiceImple.updateActivity(activityDTO,userId);
+        activityServiceImple.updateActivity (activityDTO, userId);
 
     }
 
@@ -81,138 +79,63 @@ public class ActivityRestController {
 //        return activityServiceImple.AddActivityAndAffectUser (A, Userid);
 //    }
 
-@GetMapping("/getByEvaluation/{idAcitivity}")
-public List<Evaluation> getByActivity(@PathVariable ("idAcitivity") Long idActivity ){
+    @GetMapping("/getByEvaluation/{idAcitivity}")
+    public List<Evaluation> getByActivity(@PathVariable("idAcitivity") Long idActivity) {
         return activityServiceImple.getByEvalyation (idActivity);
-}
+    }
 
-@GetMapping("recherche/{keyword}")
-public  List<Activity> recherche(@PathVariable("keyword") String keyword){
+    @GetMapping("recherche/{keyword}")
+    public List<Activity> recherche(@PathVariable("keyword") String keyword) {
         return activityServiceImple.recherche (keyword);
-}
+    }
 
 
+    @PostMapping("/add-Like-post/{idActivity}/{userId}")
+    @ResponseBody
+    public ActivityLiked addLike_to_Post(@RequestBody ActivityLiked activityLiked, @PathVariable("idActivity") Long idActivity, @PathVariable("userId") Long userId) {
+        ActivityLiked activityLiked1 = new ActivityLiked ();
+        activityLiked1.setIsLiked (true);
+
+        return activityServiceImple.addLikeToActivity (activityLiked1, idActivity, userId);
+    }
+
+    @DeleteMapping("/Delete-Like/{IdLike}/{idUser}")
+    public ResponseEntity<?> Delete_Like(@PathVariable("IdLike") Long IdLike, @PathVariable("idUser") Long idUser) {
+        return activityServiceImple.Delete_Like (IdLike, idUser);
+    }
 
 
-
-
-
-
-//temchi
+    //temchi
     @PostMapping("/AddActivityToUserAEva/{userId}")
     @ResponseBody
 //    public void assignUserAndEvaToActiv (@RequestBody Activity Activ, @PathVariable("userId") Long userId, @PathVariable ("EvaluaId")Long EvaluationId)
 
-    public void assignUserAndEvaToActiv (@RequestBody Activity Activ, @PathVariable("userId") Long userId)
-
-    {
-        activityServiceImple.assignUserAndEvaToActivity (Activ,userId);
+    public void assignUserAndEvaToActiv(@RequestBody Activity Activ, @PathVariable("userId") Long userId) {
+        activityServiceImple.assignUserAndEvaToActivity (Activ, userId);
 //        activityServiceImple.assignUserAndEvaToActivity (Activ,userId,EvaluationId);
 
     }
 
 
-@Autowired
-ActivityRepository activityRepository;
+    @Autowired
+    ActivityRepository activityRepository;
 
 
     //temchi
     @GetMapping(value = "/exportpdf", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> ActivityReport(HttpServletResponse response) throws IOException {
 
-        List<Activity> allActivtys = activityRepository.findAll();
+        List<Activity> allActivtys = activityRepository.findAll ();
 
         ByteArrayInputStream bis = ExportPdf.ActivityReport (allActivtys);
 
         HttpHeaders headers = new HttpHeaders ();
 
-        headers.add("Content-Disposition", "attachment;filename=Activty.pdf");
+        headers.add ("Content-Disposition", "attachment;filename=Activty.pdf");
 
-        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+        return ResponseEntity.ok ().headers (headers).contentType (MediaType.APPLICATION_PDF)
+                .body (new InputStreamResource (bis));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/nb-Activity-Par-Utilisateur/{User}")
-    public Integer nbActivityParUtilisateur(@PathVariable("User") Activity activity) {
-        return activityServiceImple.nbActivityParUtilisateur (activity);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/getActivityByNameAndDesc")
-    public List<Activity> getProjectsByScrumMaster(String name, String description){
-        return activityServiceImple.getActivityByNameAndDesc (name,description);
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

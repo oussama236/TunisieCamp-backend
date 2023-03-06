@@ -6,12 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
+
+//    List<Activity> findByDateFinBefore(LocalDate endTime);
 
 
     @Query(nativeQuery = true ,value = "SELECT * from Activity s  WHERE s.name like :keyword ")
