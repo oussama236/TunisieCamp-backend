@@ -23,6 +23,7 @@ public class Livraison {
     @GeneratedValue(strategy = GenerationType.AUTO)
      private String IdLivreur;
      private  String Destination;
+    private String emplacement;
 
 
 }

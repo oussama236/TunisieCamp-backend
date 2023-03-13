@@ -6,7 +6,13 @@ import com.gladiators.pi_spring.Services.OutilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -48,6 +54,18 @@ import java.util.List;
     @GetMapping("/outils/top-visited")
     public List<Outils> getTopVisitedOutils(@RequestParam int limit) {
         return OutilService.getTopVisitedOutils(limit);
+    }
+
+    @PostMapping("/upload")
+    public String handleFileUpload(HttpServletRequest request, MultipartResolver multipartResolver) throws IOException {
+        MultipartHttpServletRequest multipartRequest = multipartResolver .resolveMultipart(request);
+        Iterator<String> fileNames = multipartRequest.getFileNames();
+        while (fileNames.hasNext()) {
+            String fileName = fileNames.next();
+            MultipartFile file = multipartRequest.getFile(fileName);
+            // traiter le fichier ici
+        }
+        return "Upload réussi";
     }
     }
 

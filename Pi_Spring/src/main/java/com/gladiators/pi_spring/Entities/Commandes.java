@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,21 +27,27 @@ public class Commandes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String IdCommandes;
+    private Long IdCommandes;
 
     private String IdOutils;
 
-    private Float Price;
+    private Float price;
 
-    private  PaimentChoise PaimentChoice;
+    @Enumerated(EnumType.STRING)
+    private PaimentChoise paimentChoice;
 
-    private  String DeleveryLocation;
+    private String deliveryLocation;
 
-    private MoyenTransport MoyenTrasport;
+    @Enumerated(EnumType.STRING)
+    private MoyenTransport moyenTransport;
+
+    private Date date;
 
 
     public void setIdCommandes(Long idCommande) {
     }
+
+
 
 
 }
