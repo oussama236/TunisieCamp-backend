@@ -10,6 +10,8 @@ import com.gladiators.pi_spring.Repositories.EvaluationRepository;
 import com.gladiators.pi_spring.Repositories.UserRepository;
 
 import com.gladiators.pi_spring.Services.Interfaces.IActivityService;
+import com.gladiators.pi_spring.export.ImageUtils;
+import com.sun.scenario.effect.ImageData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +19,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static com.sun.deploy.trace.Trace.println;
 
@@ -55,13 +61,23 @@ public class ActivityServiceImple implements IActivityService {
     }
 
     @Override
-    public void assignUserAndEvaToActivity(Activity ActivityId, Long userId) {
+    public String  assignUserAndEvaToActivity(Activity ActivityId, Long userId) {
         User user = userRepository.findById (userId).get ();
-        //Evaluation evaluation = evaluationRepository.findById(EvaluationId).get ();
-        ActivityId.setUser22 (user);
-        //ActivityId.setActivityEvalu (evaluation);
-        activityRepository.save (ActivityId);
+        Date endDate = ActivityId.getEndTime();
+        LocalDate endDateLocal = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate now = LocalDate.now();
 
+        if (endDateLocal.isBefore(now)) {
+            // the end date is before the current date, perform the desired action
+            activityRepository.delete(ActivityId);
+            return "Date De Fin doit etre inferiere a Date Du Jour La" ;
+        }else {
+            //Evaluation evaluation = evaluationRepository.findById(EvaluationId).get ();
+            ActivityId.setUser22 (user);
+            //ActivityId.setActivityEvalu (evaluation);
+            activityRepository.save (ActivityId);
+            return "Activty Added";
+        }
 
     }
 
@@ -93,31 +109,7 @@ public class ActivityServiceImple implements IActivityService {
 
         return evaluations;
     }
-//    @Transactional
-//    @Override
-//    public void assignUserAndEvaToActivity(Long ActivityId, Long userId) {
-// Activity activity = activityRepository.findById(ActivityId).orElse(null);
-////        User u = userRepository.findById(userId).orElse(null);
-////        u.getActivityUserActivitys ().add(p);
-//
-//
-//        User user = userRepository.findById(userId).orElse(null);
-//
-//        if (activity != null && user != null) {
-//            user.getActivityUserActivitys ().add(activity);
-//            userRepository.save(user);
-//        } else {
-//            log.info("najmouch");
-//        }
-//    }
 
-//    @Override
-//    public Long AddActivity(Activity AC) {
-//        activityRepository.save (AC);
-//        return AC.getId ();
-//    }
-
-    //
     @Override
     public void deleteActivityById(Long idA) {
         activityRepository.deleteById (idA);
@@ -125,17 +117,34 @@ public class ActivityServiceImple implements IActivityService {
 
 
     public Activity updateActivity(Activity activity, Long userId) {
-        Activity a1 = activityRepository.findById (userId).orElseThrow (() -> new EntityNotFoundException ("adversting not found"));
-        a1.setName (activity.getName ());
-        a1.setDescription (activity.getDescription ());
-        a1.setCapacity (activity.getCapacity ());
-        a1.setDisponibility (activity.getDisponibility ());
-        a1.setFavourite (activity.getFavourite ());
-        a1.setStartTime (activity.getStartTime ());
-        a1.setEndTime (activity.getEndTime ());
 
-        return activityRepository.saveAndFlush (a1);
-    }
+        Activity a1 = activityRepository.findById (userId).orElseThrow (() -> new EntityNotFoundException ("adversting not found"));
+        Date endDate = activity.getEndTime();
+        LocalDate endDateLocal = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate now = LocalDate.now();
+
+        if (endDateLocal.isBefore(now)) {
+            // the end date is before the current date, perform the desired action
+            activityRepository.delete(activity);
+        } else {
+            // la date de fin est antérieure ou égale à la date actuelle, effectuez une autre action si nécessaire
+
+            a1.setName (activity.getName ());
+            a1.setDescription (activity.getDescription ());
+            a1.setCapacity (activity.getCapacity ());
+            a1.setDisponibility (activity.getDisponibility ());
+            a1.setFavourite (activity.getFavourite ());
+            a1.setStartTime (activity.getStartTime ());
+            a1.setEndTime (activity.getEndTime ());
+
+
+
+        }   return activityRepository.saveAndFlush (a1);
+        }
+
+
+
+
 
 
     @Override
@@ -193,32 +202,10 @@ public class ActivityServiceImple implements IActivityService {
         }
     }
 
-//    @Override
-//    public void deleActivityRecent(Activity ac, long idUser) {
-//        Activity a1 = activityRepository.findById (idUser).orElseThrow (() -> new EntityNotFoundException ("adversting not found"));
-//
-//        List<Activity> activitesEnRetard = activityRepository.findByDateFinBefore(LocalDate.now());
-//
-//        for (Activity activite : activitesEnRetard) {
-//            activityRepository.delete(activite);
-//        }
-//        List<Activity> allActivites = activityRepository.findAll();
-//        System.out.println(allActivites);
-//
-//
-//
-//
-//    }
+
+
+
+
+
 
    }
-
-
-
-
-
-
-
-
-
-
-

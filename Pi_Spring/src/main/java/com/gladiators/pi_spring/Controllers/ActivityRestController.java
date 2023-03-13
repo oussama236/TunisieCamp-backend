@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,11 +54,7 @@ public class ActivityRestController {
         return activityServiceImple.findById (id);
     }
 
-//temchi
-//    @PostMapping("/add-Activity")
-//public Long ajouterActivite(@RequestBody Activity Ac){
-//    return activityServiceImple.AddActivity (Ac);
-//}
+
 
     //temchi
     @DeleteMapping("/remove-Activ/{id}")
@@ -73,11 +70,7 @@ public class ActivityRestController {
 
     }
 
-//    @PostMapping("/add-Activity/{User-id}")
-//    public Activity addActivityUser(@RequestBody Activity A, @PathVariable("User-id")  Long Userid) {
-//
-//        return activityServiceImple.AddActivityAndAffectUser (A, Userid);
-//    }
+
 
     @GetMapping("/getByEvaluation/{idAcitivity}")
     public List<Evaluation> getByActivity(@PathVariable("idAcitivity") Long idActivity) {
@@ -108,12 +101,12 @@ public class ActivityRestController {
     //temchi
     @PostMapping("/AddActivityToUserAEva/{userId}")
     @ResponseBody
-//    public void assignUserAndEvaToActiv (@RequestBody Activity Activ, @PathVariable("userId") Long userId, @PathVariable ("EvaluaId")Long EvaluationId)
+    public String assignUserAndEvaToActiv(@RequestBody Activity Activ, @PathVariable("userId") Long userId) {
 
-    public void assignUserAndEvaToActiv(@RequestBody Activity Activ, @PathVariable("userId") Long userId) {
-        activityServiceImple.assignUserAndEvaToActivity (Activ, userId);
-//        activityServiceImple.assignUserAndEvaToActivity (Activ,userId,EvaluationId);
-
+        String message = "";
+       message = activityServiceImple.assignUserAndEvaToActivity (Activ, userId);
+         ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+return message;
     }
 
 

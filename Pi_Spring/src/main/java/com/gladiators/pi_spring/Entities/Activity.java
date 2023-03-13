@@ -50,14 +50,7 @@ public class Activity implements Serializable {
     private Date endTime;
 
 
-//    @OneToOne
-/*   @JoinColumn(name = "activity_evalu_id")
-    @OneToOne
-            (
-            mappedBy = "activityEvalu"
-            //,            fetch = FetchType.LAZY
-    )
-    private Evaluation activityEvalu;  */
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "activity_user_id")

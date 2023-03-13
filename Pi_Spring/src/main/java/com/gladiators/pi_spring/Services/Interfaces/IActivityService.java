@@ -10,7 +10,7 @@ import java.util.List;
 public interface IActivityService {
 //    public Activity AddActivityAndAffectUser(Activity A , Long Userid);
 
-    public void assignUserAndEvaToActivity(Activity ActivityId, Long userId);
+    public String  assignUserAndEvaToActivity(Activity ActivityId, Long userId);
             //, Long EvaluationId
 
 

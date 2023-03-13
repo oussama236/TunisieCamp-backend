@@ -29,10 +29,6 @@ public class EvaluationRestController {
     }
 
 
-    @PostMapping("/add-Evaluation")
-    public Long ajouterEvaluation(@RequestBody Evaluation Ev){
-        return evaluationServiceImple.AddEvaluation (Ev);
-    }
 
 
     @DeleteMapping("/remove-evaluation/{id}")
@@ -49,10 +45,10 @@ public class EvaluationRestController {
     }
 
 
-    @GetMapping("/Evaluation-Activty/{noteValue}")
-    public List<Evaluation> listeDeClientsParCategorie(@PathVariable("noteValue")Long ActivityId)  {
-        return evaluationServiceImple.listeDeEvaluationParActivty((ActivityId) );
-    }
+//    @GetMapping("/Evaluation-Activty/{noteValue}")
+//    public List<Evaluation> listeDeClientsParCategorie(@PathVariable("noteValue")Long ActivityId)  {
+//        return evaluationServiceImple.listeDeEvaluationParActivty((ActivityId) );
+//    }
 
 
 
@@ -73,5 +69,8 @@ public class EvaluationRestController {
        message = evaluationServiceImple.mostEvaluation ();
        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     }
+
+
+
 
 }
