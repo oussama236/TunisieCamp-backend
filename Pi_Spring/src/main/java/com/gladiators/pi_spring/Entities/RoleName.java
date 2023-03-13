@@ -1,8 +1,9 @@
 package com.gladiators.pi_spring.Entities;
 
 public enum RoleName {
-    Administrator,
+    Camper,
     CenterOwner,
-    EquipementOwner,
-    Camper
+    EquipmentOwner,
+    Administrartor
+
 }
