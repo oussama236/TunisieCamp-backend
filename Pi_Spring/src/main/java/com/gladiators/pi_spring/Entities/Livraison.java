@@ -1,14 +1,15 @@
 package com.gladiators.pi_spring.Entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 
 @Entity
 @Getter
 @Setter
-public class Livraison {
+public class Livraison implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "IdCommandes")
@@ -17,11 +18,9 @@ public class Livraison {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String IdLivraison;
+    private long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-     private String IdLivreur;
+   //  private String Id_Livreur;
      private  String Destination;
     private String emplacement;
 

@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @Setter
-public class Facture {
+public class Facture implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "IdCommandes")
@@ -16,11 +17,7 @@ public class Facture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String IdFacture;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    private long id;
     private  String IdUser;
 
     private  Float TotalPrice;

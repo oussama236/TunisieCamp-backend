@@ -1,4 +1,4 @@
-package Utils;
+package com.gladiators.pi_spring.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

@@ -13,9 +13,9 @@ public class FactureService {
     @Autowired
     private FactureRepository factureRepository;
 
-    public Facture getFactureById(Long idFacture) {
-        Optional<Facture> factureOptional = factureRepository.findById(idFacture);
-        return factureOptional.orElseThrow(() -> new RuntimeException("Facture non trouvée avec l'ID : " + idFacture));
+    public Facture getFactureById(long id) {
+        Optional<Facture> factureOptional = factureRepository.findById(id);
+        return factureOptional.orElseThrow(() -> new RuntimeException("Facture non trouvée avec l'ID : " + id));
     }
 
 

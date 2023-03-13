@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,10 +12,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "outils")
-public class Outils {
+public class Outils implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
     private User User;
 
     @Column(name = "nombreVisites")
@@ -25,7 +25,7 @@ public class Outils {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long IdOutils;
+    private long id;
 
     private  String Name;
 
@@ -34,6 +34,8 @@ public class Outils {
     private  Float Price;
 
     private  Float Poids;
+    private String image;
+
 
 
 

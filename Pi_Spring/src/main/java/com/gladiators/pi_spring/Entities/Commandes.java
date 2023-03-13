@@ -4,19 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Commandes {
+public class Commandes implements Serializable {
 
     @ManyToMany
     @JoinTable( name = "commande_outils", joinColumns = @JoinColumn(name = "IdCommandes"),
             inverseJoinColumns = @JoinColumn(name = "IdOutils"))
-    private Set<Outils> outils = new HashSet<>();
+    private List<Outils> outils;
 
 
     @OneToOne(mappedBy = "commandes")
@@ -27,9 +27,8 @@ public class Commandes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long IdCommandes;
-
-    private String IdOutils;
+    private long id;
+    private  long IdOutils;
 
     private Float price;
 
@@ -44,7 +43,7 @@ public class Commandes {
     private Date date;
 
 
-    public void setIdCommandes(Long idCommande) {
+    public void setId(Long idCommande) {
     }
 
 

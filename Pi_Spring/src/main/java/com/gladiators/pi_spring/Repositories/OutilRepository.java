@@ -13,9 +13,5 @@ import java.awt.print.Pageable;
 @Repository
 public interface OutilRepository extends JpaRepository<Outils, Long> {
 
-    @Modifying
-    @Query("UPDATE Outils o SET o.nombreVisites = o.nombreVisites + 1 WHERE o.IdOutils = :IdOutils")
-    void incrementVisites(@Param("IdOutils") Long IdOutis);
 
-    Page<Outils> findAll(Pageable topN);
 }

@@ -5,14 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
-public class User {
+public class User  implements Serializable  {
     @Id
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class User {
 
 
     /*Abdennour */
-    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Outils> outils = new ArrayList<>();
+    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL/*, orphanRemoval = true*/)
+    private List<Outils> outils ;
 
 }

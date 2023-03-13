@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LivraisonRepository extends JpaRepository<Livraison, Long> {
 
-    Livraison findByIdCommande(Long idCommande);
+
 
     Livraison findByEmplacement(String emplacement);
 
     // Ajouter une méthode pour mettre à jour l'emplacement d'une Livraison
-    @Modifying
+   /* @Modifying
     @Query("update Livraison set emplacement = :emplacement where IdLivraison = :IdLivraison")
-    void updateEmplacement(@Param("livraisonId") Long livraisonId, @Param("emplacement") String emplacement);
+    void updateEmplacement(@Param("livraisonId") Long livraisonId, @Param("emplacement") String emplacement);*/
 }
 

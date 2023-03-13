@@ -4,7 +4,7 @@ import com.gladiators.pi_spring.Entities.User;
 
 import java.util.List;
 
-public interface UserInterface {
+public interface UserInterface  {
 
 
    public User AddUserAndAffectRole(User user, Long roleId);
@@ -13,5 +13,10 @@ public interface UserInterface {
     public User updateUser(User user);
 
     List<User> retrieveAllUser();
+
+    public User findUserById(Long id);
+
+
+
 
 }

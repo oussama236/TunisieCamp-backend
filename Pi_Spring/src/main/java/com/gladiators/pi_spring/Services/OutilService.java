@@ -17,7 +17,7 @@ public class OutilService {
     @Autowired
     private OutilRepository outilsRepository;
 
-    public Outils getOutilById(Long id) {
+    public Outils getOutilById(long id) {
         return outilRepository.findById(id).orElseThrow(() -> new RuntimeException("Outil introuvable"));
     }
 
@@ -29,8 +29,8 @@ public class OutilService {
         return outilRepository.save(outils);
     }
 
-    public Outils updateOutil(Long IdOutils, Outils outils) {
-        Outils existingOutil = getOutilById(IdOutils);
+    public Outils updateOutil(long id, Outils outils) {
+        Outils existingOutil = getOutilById(id);
         existingOutil.setName(outils.getName());
         existingOutil.setPoids(outils.getPoids());
         existingOutil.setPrice(outils.getPrice());
@@ -38,13 +38,13 @@ public class OutilService {
         return outilRepository.save(existingOutil);
     }
 
-    public void deleteOutil(Long IdOutils) {
-        outilRepository.deleteById(IdOutils);
+    public void deleteOutil(long id) {
+        outilRepository.deleteById(id);
     }
 
     public static List<Outils> getTopVisitedOutils(int limit) {
         Pageable topN = (Pageable) PageRequest.of(0, limit, Sort.by("nombreVisites").descending());
-        Page<Outils> topOutils = outilRepository.findAll(topN);
+        Page<Outils> topOutils = outilRepository.findAll((org.springframework.data.domain.Pageable) topN);
         return topOutils.getContent();
     }
 }

@@ -16,8 +16,8 @@ public class FactureController {
     private FactureService factureService;
 
     @GetMapping("/{idFacture}")
-    public Facture getFactureById(@PathVariable Long idFacture) {
-        return factureService.getFactureById(idFacture);
+    public Facture getFactureById(@PathVariable long id) {
+        return factureService.getFactureById(id);
     }
 }
 

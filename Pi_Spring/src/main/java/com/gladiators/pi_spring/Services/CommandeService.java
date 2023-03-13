@@ -29,8 +29,8 @@ public class CommandeService {
     }
 
     public Commandes updateCommande(Commandes commandes) {
-        Commandes commandeToUpdate = commandeRepository.findById(commandes.getIdCommandes())
-                .orElseThrow(() -> new EntityNotFoundException("Commande with id " + commandes.getIdCommandes() + " not found."));
+        Commandes commandeToUpdate = commandeRepository.findById(commandes.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Commande with id " + commandes.getId() + " not found."));
 
         commandeToUpdate.setIdOutils(commandes.getIdOutils());
         commandeToUpdate.setPrice(commandes.getPrice());
@@ -42,12 +42,12 @@ public class CommandeService {
         return commandeRepository.save(commandeToUpdate);
     }
 
-    public void deleteCommande(Long IdCOmmandes) {
-        Optional<Commandes> optionalCommande = commandeRepository.findById(IdCOmmandes);
+    public void deleteCommande(long id) {
+        Optional<Commandes> optionalCommande = commandeRepository.findById(id);
         if (optionalCommande.isPresent()) {
-            commandeRepository.deleteById(IdCOmmandes);
+            commandeRepository.deleteById(id);
         } else {
-            throw new EntityNotFoundException("Commande with id " + IdCOmmandes + " not found");
+            throw new EntityNotFoundException("Commande with id " + id + " not found");
         }
     }
 
@@ -62,11 +62,11 @@ public class CommandeService {
     public List<Commandes> chercherCommandesParDeliveryLocation(String deliveryLocation) {
         return commandeRepository.findByDeliveryLocation(deliveryLocation);
     }
-    }
+
     ////////////////////
 
 
-       /* public void sendConfirmationEmail(Commandes commandes) throws MessagingException {
+      /* public void sendConfirmationEmail(Commandes commandes) throws MessagingException {
 
             JavaMailSender mailSender = null;
             MimeMessage message = mailSender .createMimeMessage();
@@ -78,5 +78,5 @@ public class CommandeService {
 
             mailSender.send(message);
         }*/
-
+}
 

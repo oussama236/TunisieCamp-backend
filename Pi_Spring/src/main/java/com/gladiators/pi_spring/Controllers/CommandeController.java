@@ -11,27 +11,24 @@ import java.util.List;
 
 
 @RestController
-    @RequestMapping("/commandes")
+    @RequestMapping("/Commandes")
 
     public class CommandeController {
     @Autowired
     private CommandeService commandeService;
 
-    @GetMapping("")
+    @GetMapping("/getall")
     public List<Commandes> getAllCommandes() {
         return commandeService.getAllCommandes();
     }
 
-
-
-
-    @PostMapping("")
+    @PostMapping("/pot")
     public Commandes createCommande(@RequestBody Commandes commandes) {
         return commandeService.createCommande(commandes);
     }
     @DeleteMapping("/{IdCommandes}")
-    public ResponseEntity<Commandes> deleteCommande(@PathVariable Long IdCommandes) {
-        commandeService.deleteCommande(IdCommandes);
+    public ResponseEntity<Commandes> deleteCommande(@PathVariable long id) {
+        commandeService.deleteCommande(id);
         return ResponseEntity.ok().build();
     }
        /* @PostMapping("/sendEmail")

@@ -13,9 +13,6 @@ public class PiSpringApplication {
         SpringApplication.run(PiSpringApplication.class, args);
     }
 
-    @Bean
-    public MultipartResolver multipartResolver() {
-        return new CommonsMultipartResolver();
-    }
+
 
 }
