@@ -7,6 +7,8 @@ import com.gladiators.pi_spring.Services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,14 +63,16 @@ import java.util.List;
     public List<Outils> getTopVisitedOutils(@RequestParam int limit) {
         return OutilService.getTopVisitedOutils(limit);
     }
+/*
     @PostMapping("/uploadimg")
 public Outils save(@RequestParam MultipartFile file , Outils outils){
             String fileName= storageService.CreateNameImage(file);
             storageService.store(file,fileName);
             outils.setImage(fileName);
             return outilRepository.save(outils);
+*/
 
-    }
+
 
     @GetMapping("Files/{filename:.+}")
     @ResponseBody
@@ -77,5 +81,34 @@ public Outils save(@RequestParam MultipartFile file , Outils outils){
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=\""+file.getFilename()+"\"").body(file);
 
     }
+
+
+    // ********************************************************************
+
+
+    @PostMapping("/image")
+    public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file) throws IOException {
+        String uploadImage = outilService.uploadImage(file);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadImage);
+    }
+
+    @GetMapping("/{fileName}")
+    public ResponseEntity<?> downloadImage(@PathVariable String fileName){
+        byte[] imageData=outilService.downloadImage(fileName);
+        System.err.println("*****1******* "+ fileName);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+
+    }
+
+
+
+
+
+
+
     }
 

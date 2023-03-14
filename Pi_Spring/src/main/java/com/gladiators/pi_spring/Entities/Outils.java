@@ -34,7 +34,8 @@ public class Outils implements Serializable {
     private  Float Price;
 
     private  Float Poids;
-    private String image;
+
+  //  private ImageData image;
 
 
 
