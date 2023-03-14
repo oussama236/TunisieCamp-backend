@@ -1,5 +1,6 @@
 com/gladiators/pi_spring/Controllers/HelloController.class
 com/gladiators/pi_spring/Services/CommandeService.class
+com/gladiators/pi_spring/Services/StorageService.class
 com/gladiators/pi_spring/Repositories/RoleRepository.class
 com/gladiators/pi_spring/Services/OutilService.class
 com/gladiators/pi_spring/Entities/User.class
@@ -10,10 +11,11 @@ com/gladiators/pi_spring/Controllers/FactureController.class
 com/gladiators/pi_spring/Services/Interfaces/UserInterface.class
 com/gladiators/pi_spring/Entities/MoyenTransport.class
 com/gladiators/pi_spring/Controllers/LivraisonController.class
+com/gladiators/pi_spring/Entities/ImageData.class
 com/gladiators/pi_spring/Entities/PaimentChoise.class
 com/gladiators/pi_spring/PiSpringApplication.class
-Utils/StorageService.class
 com/gladiators/pi_spring/Repositories/LivraisonRepository.class
+com/gladiators/pi_spring/Entities/ImageData$ImageDataBuilder.class
 com/gladiators/pi_spring/Services/Implementations/UserImp.class
 com/gladiators/pi_spring/Entities/Outils.class
 com/gladiators/pi_spring/Services/LivraisonService.class
@@ -21,6 +23,7 @@ com/gladiators/pi_spring/Entities/Facture.class
 com/gladiators/pi_spring/Controllers/UserController.class
 com/gladiators/pi_spring/Services/FactureService.class
 com/gladiators/pi_spring/Entities/RoleName.class
+com/gladiators/pi_spring/Repositories/StorageRepository.class
 com/gladiators/pi_spring/Repositories/OutilRepository.class
 com/gladiators/pi_spring/Repositories/UserRepository.class
 com/gladiators/pi_spring/Controllers/OutilController.class

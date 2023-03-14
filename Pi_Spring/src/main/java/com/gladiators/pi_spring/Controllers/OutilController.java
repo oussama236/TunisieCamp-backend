@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 @RestController
     @RequestMapping("/outils")
@@ -104,6 +108,20 @@ public Outils save(@RequestParam MultipartFile file , Outils outils){
 
     }
 
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @GetMapping("/sendMail/{toEmail}/{subject}/{body}")
+    public void sendSimpleEmail(@PathVariable String toEmail,@PathVariable String subject,@PathVariable String body) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("fromemail@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(subject);
+        mailSender.send(message);
+        System.out.println("Mail Send...");
+    }
 
 
 

@@ -2,11 +2,11 @@
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/UserRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Services/CommandeService.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Services/Interfaces/UserInterface.java
+/Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/ImageData.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Controllers/HelloController.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Controllers/UserController.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/RoleRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/Facture.java
-/Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/Utils/StorageService.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Controllers/OutilController.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/Commandes.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Services/FactureService.java
@@ -14,6 +14,7 @@
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/LivraisonRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/MoyenTransport.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Controllers/FactureController.java
+/Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/StorageRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/CommandeRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/Livraison.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Controllers/CommandeController.java
@@ -27,4 +28,5 @@
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Services/OutilService.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Repositories/FactureRepository.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/PiSpringApplication.java
+/Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Services/StorageService.java
 /Users/amdouniabdennour/Desktop/PIDEV_SPRINGBOOT/TunisieCamp-backend/Pi_Spring/src/main/java/com/gladiators/pi_spring/Entities/Cathegorie.java
